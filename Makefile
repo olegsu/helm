@@ -16,7 +16,8 @@ LDFLAGS   := -w -s
 GOFLAGS   :=
 BINDIR    := $(CURDIR)/bin
 BINARIES  := helm tiller
-GIT_TAG  := "v1.3.1"
+
+GIT_TAG  = "v1.3.1"
 
 # Required for globs to work correctly
 SHELL=/usr/bin/env bash
@@ -162,6 +163,7 @@ HAS_GIT := $(shell command -v git;)
 
 .PHONY: bootstrap
 bootstrap:
+export GO111MODULE=on
 ifndef HAS_GOX
 	go get -u github.com/mitchellh/gox
 endif
