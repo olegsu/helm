@@ -16,6 +16,7 @@ LDFLAGS   := -w -s
 GOFLAGS   :=
 BINDIR    := $(CURDIR)/bin
 BINARIES  := helm tiller
+GIT_TAG  := "v1.3.1"
 
 # Required for globs to work correctly
 SHELL=/usr/bin/env bash
@@ -168,7 +169,6 @@ endif
 ifndef HAS_GIT
 	$(error You must install Git)
 endif
-	GIT_TAG="v1.3.1"
 	go get -d -u github.com/golang/protobuf/protoc-gen-go
 	git -C "$(go env GOPATH)"/src/github.com/golang/protobuf checkout $(GIT_TAG)
 	go install github.com/golang/protobuf/protoc-gen-go
