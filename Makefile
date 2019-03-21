@@ -9,7 +9,6 @@ DIST_DIRS         = find * -type d -exec
 
 # go option
 GO        ?= go
-PKG       := $(shell glide novendor)
 TAGS      :=
 TESTS     := .
 TESTFLAGS :=
@@ -114,7 +113,7 @@ docker-test: docker-test-unit
 test-unit:
 	@echo
 	@echo "==> Running unit tests <=="
-	HELM_HOME=/no/such/dir $(GO) test $(GOFLAGS) -run $(TESTS) $(PKG) $(TESTFLAGS)
+	HELM_HOME=/no/such/dir $(GO) test $(GOFLAGS) -run $(TESTS) $(TESTFLAGS)
 
 .PHONY: docker-test-unit
 docker-test-unit: check-docker
@@ -122,7 +121,7 @@ docker-test-unit: check-docker
 		-v $(shell pwd):/go/src/k8s.io/helm \
 		-w /go/src/k8s.io/helm \
 		$(DEV_IMAGE) \
-		bash -c "HELM_HOME=/no/such/dir go test $(GOFLAGS) -run $(TESTS) $(PKG) $(TESTFLAGS)"
+		bash -c "HELM_HOME=/no/such/dir go test $(GOFLAGS) -run $(TESTS) $(TESTFLAGS)"
 
 .PHONY: test-style
 test-style:
@@ -157,15 +156,11 @@ clean:
 coverage:
 	@scripts/coverage.sh
 
-HAS_GLIDE := $(shell command -v glide;)
 HAS_GOX := $(shell command -v gox;)
 HAS_GIT := $(shell command -v git;)
 
 .PHONY: bootstrap
 bootstrap:
-ifndef HAS_GLIDE
-	go get -u github.com/Masterminds/glide
-endif
 ifndef HAS_GOX
 	go get -u github.com/mitchellh/gox
 endif
@@ -173,7 +168,7 @@ endif
 ifndef HAS_GIT
 	$(error You must install Git)
 endif
-	glide install --strip-vendor
+	go mod ven
 	go build -o bin/protoc-gen-go ./vendor/github.com/golang/protobuf/protoc-gen-go
 
 include versioning.mk
