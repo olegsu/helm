@@ -168,7 +168,10 @@ endif
 ifndef HAS_GIT
 	$(error You must install Git)
 endif
-	go mod vendor
+	GIT_TAG="v1.3.1"
+	go get -d -u github.com/golang/protobuf/protoc-gen-go
+	git -C "$(go env GOPATH)"/src/github.com/golang/protobuf checkout $GIT_TAG
+	go install github.com/golang/protobuf/protoc-gen-go
 	go build -o bin/protoc-gen-go ./vendor/github.com/golang/protobuf/protoc-gen-go
 
 include versioning.mk
