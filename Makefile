@@ -168,7 +168,7 @@ endif
 ifndef HAS_GIT
 	$(error You must install Git)
 endif
-	go mod ven
+	go mod vendor
 	go build -o bin/protoc-gen-go ./vendor/github.com/golang/protobuf/protoc-gen-go
 
 include versioning.mk
