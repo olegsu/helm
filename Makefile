@@ -17,7 +17,7 @@ GOFLAGS   :=
 BINDIR    := $(CURDIR)/bin
 BINARIES  := helm tiller
 
-GIT_TAG  = "v1.3.1"
+GIT_TAG  = v1.3.1
 
 # Required for globs to work correctly
 SHELL=/usr/bin/env bash
@@ -170,8 +170,8 @@ endif
 	git -C $(GOPATH)/src/github.com/golang/protobuf checkout $(GIT_TAG)
 	go install github.com/golang/protobuf/protoc-gen-go
 	go build -o bin/protoc-gen-go ./vendor/github.com/golang/protobuf/protoc-gen-go
-ifndef HAS_GOX
-	go get -u github.com/mitchellh/gox
-endif
+# ifndef HAS_GOX
+# 	go get -u github.com/mitchellh/gox
+# endif
 
-include versioning.mk
+# include versioning.mk
