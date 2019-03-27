@@ -17,7 +17,7 @@ GOFLAGS   :=
 BINDIR    := $(CURDIR)/bin
 BINARIES  := helm tiller
 
-GIT_TAG  = v1.3.1
+GIT_TAG  = v1.2.0
 
 # Required for globs to work correctly
 SHELL=/usr/bin/env bash
