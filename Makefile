@@ -163,7 +163,6 @@ HAS_GIT := $(shell command -v git;)
 
 .PHONY: bootstrap
 bootstrap:
-export GO111MODULE=on
 ifndef HAS_GOX
 	go get -u github.com/mitchellh/gox
 endif
