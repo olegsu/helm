@@ -166,10 +166,10 @@ bootstrap:
 ifndef HAS_GIT
 	$(error You must install Git)
 endif
-	go get -d -u github.com/golang/protobuf/protoc-gen-go
-	git -C $(GOPATH)/src/github.com/golang/protobuf checkout $(GIT_TAG)
-	go install github.com/golang/protobuf/protoc-gen-go
-	go build -o bin/protoc-gen-go ./vendor/github.com/golang/protobuf/protoc-gen-go
+	@go get -d -u github.com/golang/protobuf/protoc-gen-go
+	@git -C $(GOPATH)/src/github.com/golang/protobuf checkout $(GIT_TAG)
+	@go install github.com/golang/protobuf/protoc-gen-go
+	@go build -o bin/protoc-gen-go ./vendor/github.com/golang/protobuf/protoc-gen-go
 # ifndef HAS_GOX
 # 	go get -u github.com/mitchellh/gox
 # endif
